@@ -1,11 +1,29 @@
-import React from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import CategoryCard from "./CategoryCard";
 
 const Category = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/categories").then((data) => {
+      setCategories(data.data);
+      console.log(data.data);
+    });
+  }, []);
+  return (
+    <>
+    <h2 className="text-3xl text-center my-6">All Categories</h2>
+    <div className="lg:flex w-full my-3">
+      {categories.map((category) => (
+        <CategoryCard
+        key={category._id}
+        category={category}
+        ></CategoryCard>
+      ))}
+    </div>
+    </>
+  );
 };
 
 export default Category;
