@@ -1,0 +1,74 @@
+[
+  {
+    "pd_name": "French Four-Door Stainless Steel Refrigerator with auto Ice Maker, Water Dispenser",
+    "image": "https://i.ibb.co/HG5BMHY/French-Four-Door-Stainless-Steel-Refrigerator-with-auto-Ice-Maker-Water-Dispenser.png",
+    "seller_name": "Mack",
+    "original_price": 499,
+    "resale_price": 250,
+    "category": "beko",
+    "cat_id": "1",
+    "published_date": "02-05-2020",
+    "used": 2,
+    "location": "Badda"
+  },
+  {
+    "pd_name": "Freezer Top White Refrigerator",
+    "image": "https://i.ibb.co/Jpqgs1S/Freezer-Top-White-Refrigerator.png",
+    "seller_name": "Jack",
+    "original_price": 360,
+    "resale_price": 230,
+    "category": "beko",
+    "cat_id": "1",
+    "published_date": "06-05-2020",
+    "used": 1.5,
+    "location": "Mohakhali"
+  },
+  {
+    "pd_name": "Samsung Family Hub Side by Side Refrigerator 23.2 Cu.ft. RS64T5F01B4",
+    "image": "https://i.ibb.co/YR4gZgy/RS64-T5-F01-B4.png",
+    "seller_name": "Shimul",
+    "original_price": 569,
+    "resale_price": 300,
+    "category": "samsung",
+    "cat_id": "2",
+    "published_date": "02-12-2021",
+    "used": 1,
+    "location": "Gulshan"
+  },
+  {
+    "pd_name": "Samsung RF28K9380SG 4-Door Flex Food Showcase Refrigerator",
+    "image": "https://i.ibb.co/BZVWP2T/samsung-rf28k9380sg-refrigerator-product-photos-13.jpg",
+    "seller_name": "Himel",
+    "original_price": 599,
+    "resale_price": 420,
+    "category": "samsung",
+    "cat_id": "2",
+    "published_date": "01-11-2019",
+    "used": 3,
+    "location": "Banani"
+  },
+  {
+    "pd_name": "260 Litres Frost Free Refrigerator With Smart Inverter Compressor, Fridge , MOIST 'N' FRESH,Door Cooling+",
+    "image": "https://i.ibb.co/vVYgXrn/Z03-GL-S292-RDSX-Refrigerators-Front-View-Top-Door-Open-Without-Content-DZ-04.webp",
+    "seller_name": "Arman",
+    "original_price": 400,
+    "resale_price": 200,
+    "category": "LG",
+    "cat_id": "3",
+    "published_date": "12-02-2019",
+    "used": 3,
+    "location": "Wari"
+  },
+  {
+    "pd_name": "601L side-by-side-fridge with InstaView Door-in-Door™ in Matt Black",
+    "image": "https://i.ibb.co/yy862vq/GS-X6010-MC-Side-by-Side-Refrigerators-D3.jpg",
+    "seller_name": "Rakib",
+    "original_price": 550,
+    "resale_price": 350,
+    "category": "LG",
+    "cat_id": "3",
+    "published_date": "12-02-2020",
+    "used": 2,
+    "location": "Malibagh"
+  }
+]
