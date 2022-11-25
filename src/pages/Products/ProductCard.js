@@ -11,6 +11,7 @@ const ProductCard = ({ product }) => {
     published_date,
     seller_name,
     used,
+    _id
   } = product;
   console.log(product);
   return (
