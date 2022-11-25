@@ -5,27 +5,32 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const SignUp = () => {
-  const {signUpUser, updateUser} = useContext(AuthContext);
-  const [signUpError, setSignUpError] = useState('');
-    const {register,formState: { errors },handleSubmit } = useForm();
+  const { signUpUser, updateUser } = useContext(AuthContext);
+  const [signUpError, setSignUpError] = useState("");
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
-    const handleSignUp = (data) =>{
-      signUpUser(data.email, data.password)
-      .then(result =>{
-        const user = result.user;
-        toast.success('User add successfully')
-        const userInfo = {
-          displayName: data.name
-        }
-        updateUser(userInfo)
-        .then(()=>{})
-        .catch(err =>console.error(err))
-      })
-      .catch(err =>{
-        console.error(err);
-      })
-
-    }
+  const handleSignUp = (data) => {
+    console.log(data);
+    signUpUser(data.email, data.password)
+    .then(result =>{
+      const user = result.user;
+      toast.success('User add successfully')
+      const userInfo = {
+        displayName: data.name
+      }
+      updateUser(userInfo)
+      .then(()=>{})
+      .catch(err =>console.error(err))
+    })
+    .catch(err =>{
+      console.error(err);
+      setSignUpError(err.message)
+    })
+  };
 
   return (
     <div>
@@ -83,6 +88,10 @@ const SignUp = () => {
                 })}
                 className="input input-bordered w-full max-w-xs"
               />
+              <select className="select select-bordered w-full my-2" {...register('select')} name="" id="">
+                <option value="buyer">Buyer</option>
+                <option value="seller">Seller</option>
+              </select>
               {errors.password && (
                 <p className="text-red-400">{errors.password.message}</p>
               )}
@@ -95,7 +104,11 @@ const SignUp = () => {
             {signUpError && <p className="text-red-600">{signUpError}</p>}
           </form>
           <p>
-            Already have an account? Please <Link className="text-orange-600" to="/login"> Log in</Link>
+            Already have an account? Please{" "}
+            <Link className="text-orange-600" to="/login">
+              {" "}
+              Log in
+            </Link>
           </p>
           <div className="divider">OR</div>
           <button className="btn btn-outline w-full">
