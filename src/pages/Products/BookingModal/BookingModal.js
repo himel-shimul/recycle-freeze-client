@@ -1,37 +1,52 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../context/AuthProvider";
 
-const BookingModal = ({ pd, setPd }) => {
+const BookingModal = ({ pd, setPd, _id }) => {
   const { pd_name, resale_price, location } = pd;
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  const handleBooking = event =>{
+  const handleBooking = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
     const phone = form.phone.value;
-    
+
     console.log(name, email, phone, location);
 
     const addProduct = {
-        name,
-        email,
-        phone,
-        pd_name,
-        price: resale_price,
-        location
-    }
-    setPd(null)
-  }
+      name,
+      email,
+      phone,
+      pd_name,
+      price: resale_price,
+      location,
+    };
+    fetch("http://localhost:5000/soldProducts", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          setPd(null);
+          toast.success("added Successfully");
+        }
+      });
+  };
   return (
     <>
       {/* Put this part before </body> tag */}
-      <input type="checkbox" id="product-modal" className="modal-toggle" />
+      <input type="checkbox" id={_id} className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <label
-            htmlFor="product-modal"
+            htmlFor={_id}
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
@@ -44,7 +59,7 @@ const BookingModal = ({ pd, setPd }) => {
           >
             <input
               name="name"
-                defaultValue={user?.displayName}
+              defaultValue={user?.displayName}
               disabled
               type="text"
               placeholder="Full Name"
@@ -58,7 +73,7 @@ const BookingModal = ({ pd, setPd }) => {
             />
             <input
               name="email"
-                defaultValue={user?.email}
+              defaultValue={user?.email}
               disabled
               type="email"
               placeholder="Email"
@@ -66,7 +81,7 @@ const BookingModal = ({ pd, setPd }) => {
             />
             <input
               name="text"
-                value={location}
+              value={location}
               disabled
               type="text"
               className="input input-bordered w-full "

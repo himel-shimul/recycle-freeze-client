@@ -33,10 +33,10 @@ const ProductCard = ({ product }) => {
         <p>seller: {seller_name}</p>
         <div className="card-actions justify-end">
           {/* The button to open modal */}
-          <label onClick={() => setPd(product)} htmlFor="product-modal" className="btn btn-primary">
+          <label onClick={() => setPd(product)} htmlFor={_id} className="btn btn-primary">
           Book Now
           </label>
-          {pd && <BookingModal pd={pd} setPd={setPd}></BookingModal>}
+          {pd && <BookingModal _id={_id} pd={pd} setPd={setPd}></BookingModal>}
         </div>
       </div>
     </div>
