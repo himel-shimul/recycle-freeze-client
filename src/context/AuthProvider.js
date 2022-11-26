@@ -8,6 +8,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import { useQuery } from "@tanstack/react-query";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -43,13 +44,25 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+
+  const {data: users = []} = useQuery({
+    queryKey: ['users'],
+    queryFn: async () =>{
+        const res = await fetch('http://localhost:5000/users')
+        const data =await res.json();
+        return data;
+    }
+
+})
+
   const authInfo = {
     signUpUser,
     signIn,
     user,
     logOut,
     updateUser,
-    loading
+    loading,
+    users
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
