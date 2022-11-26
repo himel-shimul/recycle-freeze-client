@@ -2,14 +2,17 @@ import { createBrowserRouter } from 'react-router-dom';
 import DashboardLayout from '../../Layout/DashboardLayout/DashboardLayout';
 import Main from '../../Layout/Main/Main';
 import AddProduct from '../../pages/AddProduct/AddProduct';
+import BlogPage from '../../pages/BlogPage/BlogPage';
 import AllUsers from '../../pages/Dashboard/AllUsers/AllUsers';
 import Dashboard from '../../pages/Dashboard/Dashboard';
 import MyOrders from '../../pages/Dashboard/MyOrders/MyOrders';
 import Home from '../../pages/Home/Home/Home';
+import MyProducts from '../../pages/MyProducts/MyProducts';
 import Products from '../../pages/Products/Products';
 import Login from '../../pages/Shared/Login/Login';
 import SignUp from '../../pages/Shared/SignUp/SignUp';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import SellerRoute from '../SellerRoute/SellerRoute';
 
 const router = createBrowserRouter([
     {
@@ -23,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/blog',
+                element: <BlogPage></BlogPage>
             },
             {
                 path: '/signup',
@@ -50,7 +57,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addproduct',
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
+            },
+            {
+                path: '/dashboard/myproducts',
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
         ]
     },
