@@ -26,7 +26,8 @@ const SignUp = () => {
       }
       updateUser(userInfo)
       .then(()=>{
-        navigate('/');
+
+        saveUser(data.name, data.email, data.select);
       })
       .catch(err =>console.error(err))
     })
@@ -34,6 +35,24 @@ const SignUp = () => {
       console.error(err);
       setSignUpError(err.message)
     })
+    };
+
+    const saveUser = (name, email, select) =>{
+      const user = {name, email, select};
+      fetch('http://localhost:5000/users', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+      .then(res => res.json())
+      .then(data => {
+        // getUserToken(email)
+        // setCreatedUserEmail(email);
+        console.log("saveuser", data);
+        navigate('/');
+      })
   };
 
   return (
@@ -92,10 +111,11 @@ const SignUp = () => {
                 })}
                 className="input input-bordered w-full max-w-xs"
               />
-              <select className="select select-bordered w-full my-2" {...register('select')} name="" id="">
+              <select className="select select-bordered w-full my-2" {...register("select")}>
                 <option value="buyer">Buyer</option>
                 <option value="seller">Seller</option>
               </select>
+
               {errors.password && (
                 <p className="text-red-400">{errors.password.message}</p>
               )}
@@ -114,10 +134,6 @@ const SignUp = () => {
               Log in
             </Link>
           </p>
-          <div className="divider">OR</div>
-          <button className="btn btn-outline w-full">
-            CONTINUE WITH GOOGLE
-          </button>
         </div>
       </div>
     </div>
