@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import useAdmin from "../../hooks/useAdmin";
 import useSeller from "../../hooks/useSeller";
 import Navbar from "../../pages/Shared/Navbar/Navbar";
 
 const DashboardLayout = () => {
   const {users, user} = useContext(AuthContext);
   const [isSeller] = useSeller(user?.email);
-  const [isAdmin] = useSeller(user?.email);
+  const [isAdmin] = useAdmin(user?.email);
+  console.log(isAdmin);
   return (
     <div>
       <Navbar></Navbar>
@@ -35,7 +37,7 @@ const DashboardLayout = () => {
               </>)
             } */}
             {
-              !isSeller && users.map(usr => usr.status !== 'admin') && <li>
+              !isSeller && !isAdmin && <li>
               <Link to='/dashboard'>My orders</Link>
             </li>
             }
@@ -60,7 +62,7 @@ const DashboardLayout = () => {
               </>
             } */}
             {
-              users.map(usr => usr.status === 'admin') && users.map(usr => usr.status !== "buyer") && !isSeller && <>
+              isAdmin && !isSeller && <>
               <li>
             <Link to='/dashboard/allseller'>All seller</Link>
             </li>

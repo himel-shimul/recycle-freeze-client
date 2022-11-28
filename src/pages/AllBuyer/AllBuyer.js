@@ -4,17 +4,17 @@ import toast from 'react-hot-toast';
 
 const AllBuyer = () => {
 
-    const { data: sellers, isLoading, refetch } = useQuery({
+    const { data: buyers, isLoading, refetch } = useQuery({
         queryKey: ["sellers"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/sellers", {
+            const res = await fetch("http://localhost:5000/buyers", {
             });
             const data = await res.json();
             return data;
         },
       });
-      const handleDeleteSeller = id =>{
-        fetch(`http://localhost:5000/sellers/${id}`,{
+      const handleDeleteBuyer = id =>{
+        fetch(`http://localhost:5000/buyers/${id}`,{
             method: 'DELETE',
         })
         .then(res => res.json())
@@ -43,11 +43,11 @@ const AllBuyer = () => {
     </thead>
     <tbody>
       {
-        sellers?.map(seller => <tr key={seller._id}>
+        buyers?.map(buyer => <tr key={buyer._id}>
             <th></th>
-            <td>{seller.name}</td>
-            <td>{seller.email}</td>
-            <td><button onClick={() => handleDeleteSeller(seller._id)} className='btn btn-sm btn-warning btn-outline'>Delete</button></td>
+            <td>{buyer.name}</td>
+            <td>{buyer.email}</td>
+            <td><button onClick={() => handleDeleteBuyer(buyer._id)} className='btn btn-sm btn-warning btn-outline'>Delete</button></td>
           </tr>)
       }
     </tbody>

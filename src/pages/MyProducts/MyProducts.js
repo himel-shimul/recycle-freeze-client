@@ -25,6 +25,18 @@ const MyProducts = () => {
         }
     })
     console.log(products);
+    const handleAdvertise = id =>{
+      fetch(`http://localhost:5000/advertise/${id}`, {
+        method: 'PUT',
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.modifiedCount > 0){
+          toast.success(' successful')
+          refetch();
+        }
+      })
+    }
 
     const handleDeleteDoctor = id =>{
       fetch(`http://localhost:5000/allProducts/${id}`,{
@@ -79,7 +91,7 @@ const MyProducts = () => {
                     </td>
                     <td>{product.original_price}</td>
                     <th>
-                      <button className="btn btn-ghost btn-xs">advertise</button>
+                      <button onClick={() => handleAdvertise(product._id)} className="btn btn-ghost btn-xs">advertise</button>
                     </th>
                   </tr>)
             }
