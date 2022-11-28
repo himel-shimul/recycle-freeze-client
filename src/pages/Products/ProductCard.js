@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
   } = product;
   console.log(product);
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-96 bg-base-100 shadow-xl mx-auto">
       <figure>
         <img src={image} className="image-fluid" alt="Shoes" />
       </figure>

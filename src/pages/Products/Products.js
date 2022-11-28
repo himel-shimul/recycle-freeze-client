@@ -7,8 +7,8 @@ const Products = () => {
     const products = useLoaderData();
 
   return (
-    <div className="m-auto">
-      <div className="flex items-end">
+    <div className="my-12">
+      <div className="grid grid-cols-2 gap-4">
       {
         products.map(product => <ProductCard
         key={product._id}

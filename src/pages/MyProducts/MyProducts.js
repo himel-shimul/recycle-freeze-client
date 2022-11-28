@@ -91,7 +91,7 @@ const MyProducts = () => {
                     </td>
                     <td>{product.original_price}</td>
                     <th>
-                      <button onClick={() => handleAdvertise(product._id)} className="btn btn-ghost btn-xs">Available</button>
+                      <button onClick={() => handleAdvertise(product._id)} className="btn btn-ghost btn-xs">Advertise</button>
                     </th>
                   </tr>)
             }
