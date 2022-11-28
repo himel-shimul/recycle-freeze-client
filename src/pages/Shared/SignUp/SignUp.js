@@ -20,7 +20,9 @@ const SignUp = () => {
     signUpUser(data.email, data.password)
     .then(result =>{
       const user = result.user;
+      
       toast.success('User add successfully')
+
       const userInfo = {
         displayName: data.name
       }

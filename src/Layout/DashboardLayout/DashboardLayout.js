@@ -35,7 +35,7 @@ const DashboardLayout = () => {
               </>)
             } */}
             {
-              isSeller || users.map(usr => usr.status !== 'admin') || <li>
+              !isSeller && users.map(usr => usr.status !== 'admin') && <li>
               <Link to='/dashboard'>My orders</Link>
             </li>
             }
@@ -60,7 +60,7 @@ const DashboardLayout = () => {
               </>
             } */}
             {
-              users.map(usr => usr.status === 'admin') && <>
+              users.map(usr => usr.status === 'admin') && users.map(usr => usr.status !== "buyer") && !isSeller && <>
               <li>
             <Link to='/dashboard/allseller'>All seller</Link>
             </li>
@@ -69,15 +69,6 @@ const DashboardLayout = () => {
             </li>
               </>
             }
-            {/* <li>
-            <Link to='/dashboard/allbuyers'>All buyers</Link>
-            </li>
-            <li>
-            <Link to='/dashboard/allbuyers'>Add product</Link>
-            </li>
-            <li>
-            <Link to='/dashboard/allbuyers'>My Products</Link>
-            </li> */}
           </ul>
         </div>
       </div>

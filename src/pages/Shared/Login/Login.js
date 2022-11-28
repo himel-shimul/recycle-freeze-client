@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const Login = () => {
-  const {signIn} = useContext(AuthContext);
+  const {signIn, googleSignIn} = useContext(AuthContext);
   const [err, setErr] = useState('');
   const { register,formState: { errors }, handleSubmit } = useForm();
 //   const [data, setData] = useState("");
@@ -25,10 +25,40 @@ const Login = () => {
       setErr(err.message);
     })
   }
+  const handleGoogleSignIn = () =>{
+    googleSignIn()
+    .then(result => {
+      const user = result.user;
+      console.log(user);
+      saveUser(user.displayName, user.email, 'buyer');
+      // navigate(from, {replace: true})
+    })
+    .catch(err => {
+      console.error(err.message)
+      setErr(err.message)
+    })
+  }
+  const saveUser = (name, email, select) =>{
+    const user = {name, email, select};
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => {
+      // getUserToken(email)
+      // setCreatedUserEmail(email);
+      console.log("saveuser", data);
+      navigate('/');
+    })
+};
 
   return (
     <div className="h-screen flex items-center justify-center">
-      <div>
+      <div className="border bg-base-100 shadow-xl p-6 rounded">
         <h2 className="text-4xl text-center">Please Log in</h2>
         <form onSubmit={handleSubmit(handleLogin)}>
           <div className="form-control w-full max-w-xs">
@@ -68,7 +98,7 @@ const Login = () => {
         }
         <p>If you new, then please <Link className="text-orange-600" to='/signup'>Create new account</Link></p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full">SIGN IN WITH GOOGLE</button>
+        <button onClick={handleGoogleSignIn} className="btn btn-success btn-outline w-full">SIGN IN WITH GOOGLE</button>
 
       </div>
     </div>
