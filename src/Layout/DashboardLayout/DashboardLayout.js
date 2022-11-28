@@ -7,6 +7,7 @@ import Navbar from "../../pages/Shared/Navbar/Navbar";
 const DashboardLayout = () => {
   const {users, user} = useContext(AuthContext);
   const [isSeller] = useSeller(user?.email);
+  const [isAdmin] = useSeller(user?.email);
   return (
     <div>
       <Navbar></Navbar>
@@ -34,7 +35,7 @@ const DashboardLayout = () => {
               </>)
             } */}
             {
-              isSeller || <li>
+              isSeller || users.map(usr => usr.status !== 'admin') || <li>
               <Link to='/dashboard'>My orders</Link>
             </li>
             }
@@ -45,6 +46,26 @@ const DashboardLayout = () => {
             </li>
             <li>
             <Link to='/dashboard/myproducts'>My Products</Link>
+            </li>
+              </>
+            }
+            {/* {
+              !isSeller && isAdmin && <>
+              <li>
+            <Link to='/dashboard/addproduct'>All seller</Link>
+            </li>
+            <li>
+            <Link to='/dashboard/myproducts'>All buyers</Link>
+            </li>
+              </>
+            } */}
+            {
+              users.map(usr => usr.status === 'admin') && <>
+              <li>
+            <Link to='/dashboard/allseller'>All seller</Link>
+            </li>
+            <li>
+            <Link to='/dashboard/allbuyer'>All buyers</Link>
             </li>
               </>
             }
