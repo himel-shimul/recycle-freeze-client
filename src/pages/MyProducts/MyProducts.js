@@ -7,7 +7,7 @@ const MyProducts = () => {
     const {user} = useContext(AuthContext);
 
     // useEffect( () =>{
-    //     fetch(`http://localhost:5000/myProducts?email=${user?.email}`)
+    //     fetch(`https://recycle-freeze-server-himel-shimul.vercel.app/myProducts?email=${user?.email}`)
     //     .then(res => res.json())
     //     .then(data => {
     //         console.log(data);
@@ -18,7 +18,7 @@ const MyProducts = () => {
     const { data: products, refetch} = useQuery({
         queryKey: ['myProducts', user?.email, ],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myProducts?email=${user?.email}`)
+            const res = await fetch(`https://recycle-freeze-server-himel-shimul.vercel.app/myProducts?email=${user?.email}`)
                 const data = await res.json();
                 return data;
             
@@ -26,7 +26,7 @@ const MyProducts = () => {
     })
     console.log(products);
     const handleAdvertise = id =>{
-      fetch(`http://localhost:5000/advertise/${id}`, {
+      fetch(`https://recycle-freeze-server-himel-shimul.vercel.app/advertise/${id}`, {
         method: 'PUT',
       })
       .then(res => res.json())
@@ -39,7 +39,7 @@ const MyProducts = () => {
     }
 
     const handleDelete = id =>{
-      fetch(`http://localhost:5000/allProducts/${id}`,{
+      fetch(`https://recycle-freeze-server-himel-shimul.vercel.app/allProducts/${id}`,{
           method: 'DELETE',
       })
       .then(res => res.json())

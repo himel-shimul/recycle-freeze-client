@@ -24,7 +24,7 @@ const BookingModal = ({ pd, setPd, _id }) => {
       price: resale_price,
       location,
     };
-    fetch("http://localhost:5000/soldProducts", {
+    fetch("https://recycle-freeze-server-himel-shimul.vercel.app/soldProducts", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -71,6 +71,7 @@ const BookingModal = ({ pd, setPd, _id }) => {
               type="text"
               placeholder="Phone Number"
               className="input input-bordered w-full "
+              required
             />
             <input
               name="email"

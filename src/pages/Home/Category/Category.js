@@ -6,7 +6,7 @@ const Category = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/categories").then((data) => {
+    axios.get("https://recycle-freeze-server-himel-shimul.vercel.app/categories").then((data) => {
       setCategories(data.data);
       console.log(data.data);
     });

@@ -6,7 +6,7 @@ const AdvertiseProduct = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() =>{
-        axios.get("http://localhost:5000/advertise").then((data) => {
+        axios.get("https://recycle-freeze-server-himel-shimul.vercel.app/advertise").then((data) => {
         setProducts(data.data);
       console.log(data.data);
     });

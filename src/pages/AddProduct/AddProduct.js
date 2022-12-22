@@ -38,7 +38,7 @@ const AddProduct = () => {
       description,
     };
     console.log(product);
-    fetch('http://localhost:5000/allProducts', {
+    fetch('https://recycle-freeze-server-himel-shimul.vercel.app/allProducts', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

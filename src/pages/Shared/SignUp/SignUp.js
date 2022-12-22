@@ -47,7 +47,7 @@ const SignUp = () => {
 
     const saveUser = (name, email, select) =>{
       const user = {name, email, select};
-      fetch('http://localhost:5000/users', {
+      fetch('https://recycle-freeze-server-himel-shimul.vercel.app/users', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'
