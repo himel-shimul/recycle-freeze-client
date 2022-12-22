@@ -38,7 +38,7 @@ const MyProducts = () => {
       })
     }
 
-    const handleDeleteDoctor = id =>{
+    const handleDelete = id =>{
       fetch(`http://localhost:5000/allProducts/${id}`,{
           method: 'DELETE',
       })
@@ -77,7 +77,7 @@ const MyProducts = () => {
                 products?.map(product => <tr>
                     <th>
                       <label>
-                      <button onClick={() => handleDeleteDoctor(product._id)} className="btn btn-sm btn-warning btn-outline">
+                      <button onClick={() => handleDelete(product._id)} className="btn btn-sm btn-warning btn-outline">
                           Delete
                       </button>
                       </label>

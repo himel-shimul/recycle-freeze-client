@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
+import Loader from "../../Loader/Loader";
 
 const MyOrders = () => {
 
@@ -8,15 +9,23 @@ const MyOrders = () => {
 
     const url = `http://localhost:5000/soldProducts?email=${user?.email}`;
 
-    const {data: orders = []} = useQuery({
+    const {data: orders = [], isLoading} = useQuery({
         queryKey: ['soldProducts', user?.email],
         queryFn: async () =>{
-            const res = await fetch(url);
+            const res = await fetch(url, {
+              headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+              }
+            });
             const data = await res.json();
             return data;
         }
     })
-    // console.log(orders);
+    console.log(orders);
+
+    if(isLoading){
+      return <Loader></Loader>
+    }
 
   return (
     <div>
@@ -38,7 +47,7 @@ const MyOrders = () => {
     </thead>
     <tbody>
       {
-        orders.map((order, i) => <tr key={i}>
+        orders?.map((order, i) => <tr key={i}>
             <th>
               <label>
                 {i + 1}

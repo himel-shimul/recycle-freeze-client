@@ -16,7 +16,6 @@ const BookingModal = ({ pd, setPd, _id }) => {
     console.log(name, email, phone, location);
 
     const addProduct = {
-      _id,
       name,
       email,
       phone,
