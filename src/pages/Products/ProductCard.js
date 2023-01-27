@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
         <img src={image} className="image-fluid" alt="Shoes" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{pd_name}</h2>
+        <h2 className="card-title">{pd_name.slice(0, 12)}</h2>
         <p>Posted: {published_date}</p>
         <div className="flex">
           <p>Buying Price: ${original_price}</p>
